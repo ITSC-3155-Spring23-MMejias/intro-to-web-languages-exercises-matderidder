@@ -1,0 +1,37 @@
+<html>
+<body>
+    <!--The code here at the top is making the two input boxes and the button to use them
+        It sets the type of input what id they have text that should be displayed by them
+        The button is straight forward as a calculate one and the outout is also straight forward-->
+    <input type="text" id="txt-price" placeholder="Enter the price of the item">
+    <input type="text" id="txt-quantity" placeholder="Enter the quanity of the item">
+    <button id="btn-submit">Calculate</button>
+    <div id="output"></div>
+
+    <!-- The script first starts by taking the values of all fields, initialized or not and making 
+        variables out of them. Then on a listener on the button which responds to interactions with it
+        It takes number values of the inputs and adds them pack to itsself, while checking if they arent
+        numericial answers.  If they are numerical it takes them and multiplies and rounds them and removes decimals
+        which it then inputs into the output information and pushes it back to the html.-->
+    <script>
+        var priceInput = document.getElementById('txt-price');
+        var quantityInput = document.getElementById('txt-quantity');
+        var submitBtn = document.getElementById('btn-submit');
+        var output = document.getElementById('output');
+        submitBtn.addEventListener('click', function () {
+            var price = priceInput.value;
+            var quanity = quantityInput.value;
+            price = +price;
+            quanity = +quanity;
+            if (Number.isNaN(price) || Number.isNaN(quanity)) {
+                output.innerHTML = 'Invalid input';
+                return;
+            }
+            var totalPrice = price * quanity;
+            totalPrice = Math.round(totalPrice * 100) / 100;
+            output.innerHTML = quanity + ' items at $' + price + ' each is $' + totalPrice;
+        });
+    </script>
+</body>
+
+</html>
